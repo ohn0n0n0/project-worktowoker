@@ -1,6 +1,9 @@
 USE master
 GO
+---user
 
+
+------
 IF  EXISTS (
 	SELECT name 
 		FROM sys.databases 
@@ -17,8 +20,9 @@ GO
 
 CREATE TABLE [admin]
 (
-	username		nvarchar(30),
+	username		nvarchar(30) PRIMARY KEY,
 	[password]		nvarchar(30),
+	isSystem		bit
 )
 GO
 
@@ -33,7 +37,7 @@ GO
 
 CREATE TABLE [information]
 (
-	username		nvarchar(30) FOREIGN KEY REFERENCES [login](username) PRIMARY KEY,
+	username		nvarchar(30) PRIMARY KEY,
 	firstName		nvarchar(30),
 	lastName		nvarchar(30),
 	gender			bit,
@@ -62,9 +66,9 @@ GO
 CREATE TABLE [worker]
 (
 	workerID		int IDENTITY(1,1) PRIMARY KEY,
-	username		nvarchar(30) FOREIGN KEY REFERENCES [login](username),
+	username		nvarchar(30),
 	qualification	nvarchar(250),
-	skillID			int FOREIGN KEY REFERENCES [skills](skillID),
+	skillID			int,
 	chargesHrs		money,
 	chargesDaily	money,
 	isDelete		bit
@@ -74,8 +78,8 @@ GO
 CREATE TABLE [work]
 (
 	workID			int IDENTITY(1,1) PRIMARY KEY,
-	username		nvarchar(30) FOREIGN KEY REFERENCES [login](username),
-	skillID			int FOREIGN KEY REFERENCES [skills](skillID),
+	username		nvarchar(30),
+	skillID			int,
 	workAddress		nvarchar(max),
 	workCity		nvarchar(250),
 	workState		nvarchar(250),
@@ -103,36 +107,18 @@ GO
 
 CREATE TABLE [rating]
 (
-	workerID		int FOREIGN KEY REFERENCES [worker](workerID),
-	ratingID		int FOREIGN KEY REFERENCES [ratingType](ratingID),
+	workerID		int,
+	ratingID		int,
 	score int,
 	isDelete		bit
 	CONSTRAINT pk_rating PRIMARY KEY(workerID, ratingID)
 )
 GO
 
-CREATE TABLE [workerDaily]
-(
-	dateID			int IDENTITY(1,1) PRIMARY KEY,
-	workerID		int FOREIGN KEY REFERENCES [worker](workerID),
-	[date]			datetime,
-	isDelete		bit
-)
-GO
-
-CREATE TABLE [workerHours]
-(
-	workerID		int FOREIGN KEY REFERENCES [worker](workerID),
-	dateID			int FOREIGN KEY REFERENCES [workerDaily](dateID),
-	[time]			time,
-	isDelete		bit
-)
-GO
-
 CREATE TABLE [group]
 (
-	username		nvarchar(30) FOREIGN KEY REFERENCES [login](username),
 	groupID			int IDENTITY(1,1) PRIMARY KEY,
+	username		nvarchar(30),
 	groupName		nvarchar(250),
 	isDelete		bit
 )
@@ -140,8 +126,8 @@ GO
 
 CREATE TABLE [groupDetails]
 (
-	groupID			int FOREIGN KEY REFERENCES [group](groupID),
-	workerID		int FOREIGN KEY REFERENCES [worker](workerID),
+	groupID			int,
+	workerID		int,
 	isDelete		bit
 	CONSTRAINT pk_groupDetails PRIMARY KEY(groupID, workerID)
 )
@@ -149,9 +135,38 @@ GO
 
 CREATE TABLE [workSelect]
 (
-	workID			int FOREIGN KEY REFERENCES [work](workID) PRIMARY KEY,
-	workerID		int FOREIGN KEY REFERENCES [worker](workerID),
-	groupID			int FOREIGN KEY REFERENCES [group](groupID),
-	isDelete		bit
+	workID			int ,
+	workerID		int,
+	isDelete		bit,
+	CONSTRAINT pk_workSelect PRIMARY KEY(workID, workerID)
 )
 GO
+----- relationship
+alter table information
+add constraint FK_Username_Information foreign key (username) references [login](username)
+go
+
+alter table worker
+add constraint FK_Username_Worker foreign key (username) references [login](username)
+go
+
+alter table work
+add constraint FK_Username_Work foreign key (username) references [login](username)
+go
+
+alter table workSelect
+add constraint FK_WorkID_WorkSelect foreign key (workID) references [work](workID),
+constraint FK_WorkerID_WorkSelect foreign key (workerID) references [worker](workerID)
+go
+alter table groupDetails
+add constraint FK_GroupID_GroupDetails foreign key (groupID) references [group](groupID),
+constraint FK_WorkerID_GroupDetails foreign key (workerID) references [worker](workerID)
+go
+
+alter table [group]
+add constraint FK_Username_Group foreign key (username) references [login](username)
+go
+
+alter table [rating]
+add constraint FK_RatingID_Rating foreign key (ratingID) references [ratingType](ratingID)
+go
