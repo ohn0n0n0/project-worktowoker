@@ -53,6 +53,7 @@ CREATE TABLE [login]
 	username		nvarchar(30) PRIMARY KEY,
 	[password]		nvarchar(30),
 	email			nvarchar(250),
+	permission		nvarchar(50),
 	isDelete		bit
 )
 GO
@@ -104,8 +105,8 @@ CREATE TABLE [work]
 	username		nvarchar(30),
 	skillName		nvarchar(50),
 	workAddress		nvarchar(max),
+	workCountry		nvarchar(250),
 	workCity		nvarchar(250),
-	workState		nvarchar(250),
 	workLoc			nvarchar(250),
 	startDate		datetime,
 	endDate			datetime,
@@ -142,6 +143,7 @@ CREATE TABLE [group]
 	groupID			int IDENTITY(1,1) PRIMARY KEY,
 	username		nvarchar(30),
 	groupName		nvarchar(250),
+	Descripttion	nvarchar(250),
 	isDelete		bit
 )
 GO
