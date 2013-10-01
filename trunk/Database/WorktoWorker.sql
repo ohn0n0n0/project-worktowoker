@@ -175,7 +175,7 @@ GO
 CREATE TABLE [post]
 (
 	postID			int IDENTITY(1,1) PRIMARY KEY,
-	username		int,
+	username		nvarchar(30),
 	postTitle		nvarchar(250),
 	postContent		text,
 	boxID			int,
@@ -191,6 +191,20 @@ CREATE TABLE [attach]
 	postID			int,
 	attachURL		nvarchar(250),
 	isDelete		bit
+)
+GO
+CREATE TABLE [report]
+(
+	reportID		int IDENTITY(1,1) PRIMARY KEY,
+	postID			int,
+	reportTypeID		int,
+	content			nvarchar(250)
+)
+GO
+CREATE TABLE [reportType]
+(
+	reportTypeID	int IDENTITY(1,1) PRIMARY KEY,
+	reportTypeName	nvarchar(250)
 )
 GO
 ----- relationship
@@ -230,4 +244,7 @@ alter table post
 add constraint FK_PostID_Post foreign key (postParent) references [post](postID),
 constraint FK_BoxID_Post foreign key (boxID) references [box](boxID),
 constraint FK_Username_Post foreign key (username) references [login](username)
+go
+alter table report
+add constraint FK_ReportTypeID_Report foreign key (reportTypeID) references [reportType](reportTypeID)
 go
