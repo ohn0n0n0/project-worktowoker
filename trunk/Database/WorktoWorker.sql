@@ -72,6 +72,7 @@ CREATE TABLE [information]
 	proofID			nvarchar(50),
 	securityQuestion	nvarchar(250),
 	securityAnswer	nvarchar(250),
+	avata			nvarchar(250),
 	isDelete		bit
 )
 GO
@@ -90,7 +91,7 @@ CREATE TABLE [worker]
 	workerID		int IDENTITY(1,1) PRIMARY KEY,
 	username		nvarchar(30),
 	qualification	nvarchar(250),
-	skillID			int,
+	skillName		nvarchar(30),
 	chargesHrs		money,
 	chargesDaily	money,
 	isDelete		bit
@@ -101,7 +102,7 @@ CREATE TABLE [work]
 (
 	workID			int IDENTITY(1,1) PRIMARY KEY,
 	username		nvarchar(30),
-	skillID			int,
+	skillName		nvarchar(50),
 	workAddress		nvarchar(max),
 	workCity		nvarchar(250),
 	workState		nvarchar(250),
@@ -129,11 +130,10 @@ GO
 
 CREATE TABLE [rating]
 (
-	workerID		int,
+	workerID		int PRIMARY KEY,
 	ratingID		int,
 	score int,
 	isDelete		bit
-	CONSTRAINT pk_rating PRIMARY KEY(workerID, ratingID)
 )
 GO
 
@@ -161,6 +161,13 @@ CREATE TABLE [workSelect]
 	workerID		int,
 	isDelete		bit,
 	CONSTRAINT pk_workSelect PRIMARY KEY(workID, workerID)
+)
+GO
+CREATE TABLE [mediaWork]
+(
+	mediaID int IDENTITY(1,1) PRIMARY KEY,
+	workID			int,
+	isDelete		bit,
 )
 GO
 CREATE TABLE [box]
@@ -235,9 +242,12 @@ add constraint FK_Username_Group foreign key (username) references [login](usern
 go
 
 alter table [rating]
-add constraint FK_RatingID_Rating foreign key (ratingID) references [ratingType](ratingID)
+add constraint FK_RatingID_Rating foreign key (ratingID) references [ratingType](ratingID),
+constraint FK_WokerID_Rating foreign key (workerID) references [worker](workerID)
 go
-
+alter table [mediaWork]
+add constraint FK_mediaid_mediaWork foreign key (mediaID) references [work](workID)
+go
 alter table box
 add constraint FK_BoxID_Box foreign key (boxParent) references [box](boxID)
 go
