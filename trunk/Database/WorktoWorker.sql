@@ -143,7 +143,7 @@ CREATE TABLE [group]
 	groupID			int IDENTITY(1,1) PRIMARY KEY,
 	username		nvarchar(30),
 	groupName		nvarchar(250),
-	Descripttion	nvarchar(250),
+	[description]	nvarchar(250),
 	isDelete		bit
 )
 GO
@@ -175,17 +175,17 @@ CREATE TABLE [mediaWork]
 GO
 create table [workDaily]
 (
-workId int ,
-workerId int ,
-dateStart datetime,
-endStart datetime,
-Monday varchar(10),
-Tuseday varchar(10),
-Wednesday varchar(10),
-Thursday varchar(10),
-Friday varchar(10),
-Saturday varchar(10),
-Sunday varchar(10)
+	workID int ,
+	workerID int ,
+	startDate datetime,
+	endDate datetime,
+	Monday varchar(10),
+	Tuesday varchar(10),
+	Wednesday varchar(10),
+	Thursday varchar(10),
+	Friday varchar(10),
+	Saturday varchar(10),
+	Sunday varchar(10)
 CONSTRAINT PK_workDaily PRIMARY KEY (workId,workerId)
 )
 go
