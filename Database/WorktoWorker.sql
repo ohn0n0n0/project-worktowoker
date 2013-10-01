@@ -111,7 +111,7 @@ CREATE TABLE [work]
 	startTime		time,
 	endTime			time,
 	[status]		int,
-	feedback		nvarchar(50),
+	feedback		nvarchar(4000),
 	workDetails		nvarchar(50),
 	chargesHrs		money,
 	chargesDaily	money,
@@ -163,6 +163,36 @@ CREATE TABLE [workSelect]
 	CONSTRAINT pk_workSelect PRIMARY KEY(workID, workerID)
 )
 GO
+CREATE TABLE [box]
+(
+	boxID			int IDENTITY(1,1) PRIMARY KEY,
+	boxName			nvarchar(250),
+	boxOrder		int,
+	boxParent		int,
+	isDelete		bit
+)
+GO
+CREATE TABLE [post]
+(
+	postID			int IDENTITY(1,1) PRIMARY KEY,
+	username		int,
+	postTitle		nvarchar(250),
+	postContent		text,
+	boxID			int,
+	postParent		int,
+	postDateCreate	datetime,
+	postDateEdit	datetime,
+	isDelete		bit
+)
+GO
+CREATE TABLE [attach]
+(
+	attachID		int IDENTITY(1,1) PRIMARY KEY,
+	postID			int,
+	attachURL		nvarchar(250),
+	isDelete		bit
+)
+GO
 ----- relationship
 alter table information
 add constraint FK_Username_Information foreign key (username) references [login](username)
@@ -191,4 +221,13 @@ go
 
 alter table [rating]
 add constraint FK_RatingID_Rating foreign key (ratingID) references [ratingType](ratingID)
+go
+
+alter table box
+add constraint FK_BoxID_Box foreign key (boxParent) references [box](boxID)
+go
+alter table post
+add constraint FK_PostID_Post foreign key (postParent) references [post](postID),
+constraint FK_BoxID_Post foreign key (boxID) references [box](boxID),
+constraint FK_Username_Post foreign key (username) references [login](username)
 go
