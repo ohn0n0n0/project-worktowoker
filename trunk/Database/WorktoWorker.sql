@@ -72,7 +72,7 @@ CREATE TABLE [information]
 	proofID			nvarchar(50),
 	securityQuestion	nvarchar(250),
 	securityAnswer	nvarchar(250),
-	avata			nvarchar(250),
+	avatar			nvarchar(250),
 	isDelete		bit
 )
 GO
@@ -167,6 +167,7 @@ CREATE TABLE [mediaWork]
 (
 	mediaID int IDENTITY(1,1) PRIMARY KEY,
 	workID			int,
+	url				nvarchar(250),
 	isDelete		bit,
 )
 GO
@@ -216,46 +217,46 @@ CREATE TABLE [reportType]
 )
 GO
 ----- relationship
-alter table information
-add constraint FK_Username_Information foreign key (username) references [login](username)
-go
+ALTER TABLE information
+ADD CONSTRAINT FK_Username_Information FOREIGN KEY (username) REFERENCES [login](username)
+GO
 
-alter table worker
-add constraint FK_Username_Worker foreign key (username) references [login](username)
-go
+ALTER TABLE worker
+ADD CONSTRAINT FK_Username_Worker FOREIGN KEY (username) REFERENCES [login](username)
+GO
 
-alter table work
-add constraint FK_Username_Work foreign key (username) references [login](username)
-go
+ALTER TABLE work
+ADD CONSTRAINT FK_Username_Work FOREIGN KEY (username) REFERENCES [login](username)
+GO
 
-alter table workSelect
-add constraint FK_WorkID_WorkSelect foreign key (workID) references [work](workID),
-constraint FK_WorkerID_WorkSelect foreign key (workerID) references [worker](workerID)
-go
-alter table groupDetails
-add constraint FK_GroupID_GroupDetails foreign key (groupID) references [group](groupID),
-constraint FK_WorkerID_GroupDetails foreign key (workerID) references [worker](workerID)
-go
+ALTER TABLE workSelect
+ADD CONSTRAINT FK_WorkID_WorkSelect FOREIGN KEY (workID) REFERENCES [work](workID),
+CONSTRAINT FK_WorkerID_WorkSelect FOREIGN KEY (workerID) REFERENCES [worker](workerID)
+GO
+ALTER TABLE groupDetails
+ADD CONSTRAINT FK_GroupID_GroupDetails FOREIGN KEY (groupID) REFERENCES [group](groupID),
+CONSTRAINT FK_WorkerID_GroupDetails FOREIGN KEY (workerID) REFERENCES [worker](workerID)
+GO
 
-alter table [group]
-add constraint FK_Username_Group foreign key (username) references [login](username)
-go
+ALTER TABLE [group]
+ADD CONSTRAINT FK_Username_Group FOREIGN KEY (username) REFERENCES [login](username)
+GO
 
-alter table [rating]
-add constraint FK_RatingID_Rating foreign key (ratingID) references [ratingType](ratingID),
-constraint FK_WokerID_Rating foreign key (workerID) references [worker](workerID)
-go
-alter table [mediaWork]
-add constraint FK_mediaid_mediaWork foreign key (mediaID) references [work](workID)
-go
-alter table box
-add constraint FK_BoxID_Box foreign key (boxParent) references [box](boxID)
-go
-alter table post
-add constraint FK_PostID_Post foreign key (postParent) references [post](postID),
-constraint FK_BoxID_Post foreign key (boxID) references [box](boxID),
-constraint FK_Username_Post foreign key (username) references [login](username)
-go
-alter table report
-add constraint FK_ReportTypeID_Report foreign key (reportTypeID) references [reportType](reportTypeID)
-go
+ALTER TABLE [rating]
+ADD CONSTRAINT FK_RatingID_Rating FOREIGN KEY (ratingID) REFERENCES [ratingType](ratingID),
+constraint FK_WokerID_Rating FOREIGN KEY (workerID) REFERENCES [worker](workerID)
+GO
+ALTER TABLE [mediaWork]
+ADD CONSTRAINT FK_mediaid_mediaWork FOREIGN KEY (workID) REFERENCES [work](workID)
+GO
+ALTER TABLE box
+ADD CONSTRAINT FK_BoxID_Box FOREIGN KEY (boxParent) REFERENCES [box](boxID)
+GO
+ALTER TABLE post
+ADD CONSTRAINT FK_PostID_Post FOREIGN KEY (postParent) REFERENCES [post](postID),
+CONSTRAINT FK_BoxID_Post FOREIGN KEY (boxID) REFERENCES [box](boxID),
+CONSTRAINT FK_Username_Post FOREIGN KEY (username) REFERENCES [login](username)
+GO
+ALTER TABLE report
+ADD CONSTRAINT FK_ReportTypeID_Report FOREIGN KEY (reportTypeID) REFERENCES [reportType](reportTypeID)
+GO
