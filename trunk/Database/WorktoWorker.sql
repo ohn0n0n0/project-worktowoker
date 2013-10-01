@@ -1,9 +1,7 @@
 USE master
 GO
 ---user
-
-
-------
+-- create database with default parameters 
 IF  EXISTS (
 	SELECT name 
 		FROM sys.databases 
@@ -15,8 +13,32 @@ GO
 CREATE DATABASE [WorkToWorker]
 GO
 
-USE [WorkToWorker]
+-- create a login called 'JitbitHelpDeskUser' 
+-- remember to change the password
+
+--/*exec sp_addlogin 'JitbitHelpDeskUser', 'HDPassword1', 'JitbitHelpDesk'*/
+-- "sp_addlogin" is deprecated so lets use CREATE LOGIN INSTEAD
+CREATE LOGIN WorkToWorkerUser WITH PASSWORD='WorkToWorker', CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
 GO
+
+-- switch to the context of the new database 
+USE WorkToWorker
+GO
+
+-- add JitbitHelpDeskUser as a user in this database 
+--/*exec sp_adduser 'JitbitHelpDeskUser', 'JitbitHelpDeskUser', 'db_datareader'*/
+-- "sp_adduser" is depracated
+CREATE USER WorkToWorkerUser FOR LOGIN WorkToWorkerUser
+GO
+
+-- add the new user to the roles
+EXEC sp_addrolemember 'db_datawriter', 'WorkToWorkerUser'
+GO
+EXEC sp_addrolemember 'db_datareader', 'WorkToWorkerUser'
+GO
+
+------
+
 
 CREATE TABLE [admin]
 (
