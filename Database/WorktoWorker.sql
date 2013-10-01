@@ -173,6 +173,22 @@ CREATE TABLE [mediaWork]
 	isDelete		bit,
 )
 GO
+create table [workDaily]
+(
+workId int ,
+workerId int ,
+dateStart datetime,
+endStart datetime,
+Monday varchar(10),
+Tuseday varchar(10),
+Wednesday varchar(10),
+Thursday varchar(10),
+Friday varchar(10),
+Saturday varchar(10),
+Sunday varchar(10)
+CONSTRAINT PK_workDaily PRIMARY KEY (workId,workerId)
+)
+go
 CREATE TABLE [box]
 (
 	boxID			int IDENTITY(1,1) PRIMARY KEY,
@@ -250,6 +266,10 @@ constraint FK_WokerID_Rating FOREIGN KEY (workerID) REFERENCES [worker](workerID
 GO
 ALTER TABLE [mediaWork]
 ADD CONSTRAINT FK_mediaid_mediaWork FOREIGN KEY (workID) REFERENCES [work](workID)
+GO
+ALTER TABLE [workDaily]
+ADD CONSTRAINT FK_workID_workDaily FOREIGN KEY (workID) REFERENCES [work](workID),
+CONSTRAINT FK_workerID_workDaily FOREIGN KEY (workerID) REFERENCES [worker](workerID)
 GO
 ALTER TABLE box
 ADD CONSTRAINT FK_BoxID_Box FOREIGN KEY (boxParent) REFERENCES [box](boxID)
