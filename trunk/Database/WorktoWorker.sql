@@ -182,6 +182,7 @@ CREATE TABLE [post]
 	postParent		int,
 	postDateCreate	datetime,
 	postDateEdit	datetime,
+	[status]		bit,
 	isDelete		bit
 )
 GO
