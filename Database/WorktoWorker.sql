@@ -189,12 +189,12 @@ create table [workDaily]
 CONSTRAINT PK_workDaily PRIMARY KEY (workId,workerId)
 )
 go
-CREATE TABLE [box]
+CREATE TABLE [topic]
 (
-	boxID			int IDENTITY(1,1) PRIMARY KEY,
-	boxName			nvarchar(250),
-	boxOrder		int,
-	boxParent		int,
+	topicID			int IDENTITY(1,1) PRIMARY KEY,
+	topicName		nvarchar(250),
+	topicOrder		int,
+	topicParent		int,
 	isDelete		bit
 )
 GO
@@ -204,7 +204,7 @@ CREATE TABLE [post]
 	username		nvarchar(30),
 	postTitle		nvarchar(250),
 	postContent		text,
-	boxID			int,
+	topicID			int,
 	postParent		int,
 	postDateCreate	datetime,
 	postDateEdit	datetime,
@@ -271,12 +271,12 @@ ALTER TABLE [workDaily]
 ADD CONSTRAINT FK_workID_workDaily FOREIGN KEY (workID) REFERENCES [work](workID),
 CONSTRAINT FK_workerID_workDaily FOREIGN KEY (workerID) REFERENCES [worker](workerID)
 GO
-ALTER TABLE box
-ADD CONSTRAINT FK_BoxID_Box FOREIGN KEY (boxParent) REFERENCES [box](boxID)
+ALTER TABLE topic
+ADD CONSTRAINT FK_TopicID_Topic FOREIGN KEY (topicParent) REFERENCES [topic](topicID)
 GO
 ALTER TABLE post
 ADD CONSTRAINT FK_PostID_Post FOREIGN KEY (postParent) REFERENCES [post](postID),
-CONSTRAINT FK_BoxID_Post FOREIGN KEY (boxID) REFERENCES [box](boxID),
+CONSTRAINT FK_TopicID_Post FOREIGN KEY (topicID) REFERENCES [topic](topicID),
 CONSTRAINT FK_Username_Post FOREIGN KEY (username) REFERENCES [login](username)
 GO
 ALTER TABLE report
