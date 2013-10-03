@@ -37,7 +37,7 @@ CREATE TABLE [admin]
 (
 	username		nvarchar(30) PRIMARY KEY,
 	[password]		nvarchar(30),
-	isSystem		bit
+	isSystem		bit default (0)
 )
 GO
 
@@ -47,7 +47,7 @@ CREATE TABLE [login]
 	[password]		nvarchar(30),
 	email			nvarchar(250),
 	permission		nvarchar(50),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -67,7 +67,7 @@ CREATE TABLE [information]
 	securityQuestion	nvarchar(250),
 	securityAnswer	nvarchar(250),
 	avatar			nvarchar(250),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -76,7 +76,7 @@ CREATE TABLE [skills]
 	skillID			int IDENTITY(1,1) PRIMARY KEY,
 	skillName		nvarchar(250),
 	[description]	nvarchar(max),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -88,7 +88,7 @@ CREATE TABLE [worker]
 	skillName		nvarchar(30),
 	chargesHrs		money,
 	chargesDaily	money,
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -110,7 +110,7 @@ CREATE TABLE [work]
 	workDetails		nvarchar(50),
 	chargesHrs		money,
 	chargesDaily	money,
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -118,7 +118,7 @@ CREATE TABLE [ratingType]
 (
 	ratingID		int IDENTITY(1,1) PRIMARY KEY,
 	ratingName		nvarchar(250),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -127,7 +127,7 @@ CREATE TABLE [rating]
 	workerID		int PRIMARY KEY,
 	ratingID		int,
 	score int,
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -137,7 +137,7 @@ CREATE TABLE [group]
 	username		nvarchar(30),
 	groupName		nvarchar(250),
 	[description]	nvarchar(250),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 
@@ -145,7 +145,7 @@ CREATE TABLE [groupDetails]
 (
 	groupID			int,
 	workerID		int,
-	isDelete		bit
+	isDelete		bit default (0)
 	CONSTRAINT pk_groupDetails PRIMARY KEY(groupID, workerID)
 )
 GO
@@ -154,7 +154,7 @@ CREATE TABLE [mediaWork]
 	mediaID int IDENTITY(1,1) PRIMARY KEY,
 	workID			int,
 	url				nvarchar(250),
-	isDelete		bit,
+	isDelete		bit default (0),
 )
 GO
 create table [workDaily]
@@ -169,7 +169,8 @@ create table [workDaily]
 	Thursday varchar(10),
 	Friday varchar(10),
 	Saturday varchar(10),
-	Sunday varchar(10)
+	Sunday varchar(10),
+	isDelete		bit default (0)
 CONSTRAINT PK_workDaily PRIMARY KEY (workId,workerId)
 )
 go
@@ -179,7 +180,7 @@ CREATE TABLE [topic]
 	topicName		nvarchar(250),
 	topicOrder		int,
 	topicParent		int,
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 CREATE TABLE [post]
@@ -193,7 +194,7 @@ CREATE TABLE [post]
 	postDateCreate	datetime,
 	postDateEdit	datetime,
 	[status]		bit,
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 CREATE TABLE [attach]
@@ -201,21 +202,23 @@ CREATE TABLE [attach]
 	attachID		int IDENTITY(1,1) PRIMARY KEY,
 	postID			int,
 	attachURL		nvarchar(250),
-	isDelete		bit
+	isDelete		bit default (0)
 )
 GO
 CREATE TABLE [report]
 (
 	reportID		int IDENTITY(1,1) PRIMARY KEY,
 	postID			int,
-	reportTypeID		int,
-	content			nvarchar(250)
+	reportTypeID	int,
+	content			nvarchar(250),
+	isDelete		bit default (0)
 )
 GO
 CREATE TABLE [reportType]
 (
 	reportTypeID	int IDENTITY(1,1) PRIMARY KEY,
-	reportTypeName	nvarchar(250)
+	reportTypeName	nvarchar(250),
+	isDelete		bit default (0)
 )
 GO
 ----- relationship
@@ -261,3 +264,22 @@ GO
 ALTER TABLE report
 ADD CONSTRAINT FK_ReportTypeID_Report FOREIGN KEY (reportTypeID) REFERENCES [reportType](reportTypeID)
 GO
+
+CREATE TRIGGER TableTopic_AfterInsert_TRG 
+  ON topic 
+AFTER INSERT
+AS
+  UPDATE topic
+  SET topicParent = i.topicID
+  FROM Inserted AS i
+  WHERE topic.topicID = i.topicID;
+  
+GO
+CREATE TRIGGER TablePost_AfterInsert_TRG 
+  ON post
+AFTER INSERT
+AS
+  UPDATE post
+  SET postParent = i.postID
+  FROM Inserted AS i
+  WHERE post.postID = i.postID;
