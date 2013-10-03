@@ -156,15 +156,6 @@ CREATE TABLE [groupDetails]
 	CONSTRAINT pk_groupDetails PRIMARY KEY(groupID, workerID)
 )
 GO
-
-CREATE TABLE [workSelect]
-(
-	workID			int ,
-	workerID		int,
-	isDelete		bit,
-	CONSTRAINT pk_workSelect PRIMARY KEY(workID, workerID)
-)
-GO
 CREATE TABLE [mediaWork]
 (
 	mediaID int IDENTITY(1,1) PRIMARY KEY,
@@ -245,11 +236,6 @@ GO
 
 ALTER TABLE work
 ADD CONSTRAINT FK_Username_Work FOREIGN KEY (username) REFERENCES [login](username)
-GO
-
-ALTER TABLE workSelect
-ADD CONSTRAINT FK_WorkID_WorkSelect FOREIGN KEY (workID) REFERENCES [work](workID),
-CONSTRAINT FK_WorkerID_WorkSelect FOREIGN KEY (workerID) REFERENCES [worker](workerID)
 GO
 ALTER TABLE groupDetails
 ADD CONSTRAINT FK_GroupID_GroupDetails FOREIGN KEY (groupID) REFERENCES [group](groupID),
