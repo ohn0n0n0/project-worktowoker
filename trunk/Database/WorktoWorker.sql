@@ -269,17 +269,26 @@ CREATE TRIGGER TableTopic_AfterInsert_TRG
   ON topic 
 AFTER INSERT
 AS
+  declare @idTopicParent int = NULL;
+  set @idTopicParent = (select topicParent from Inserted)
+  if (@idTopicParent IS NULL)
+  begin
   UPDATE topic
   SET topicParent = i.topicID
   FROM Inserted AS i
-  WHERE topic.topicID = i.topicID;
-  
+  WHERE topic.topicID = i.topicID
+  end;
 GO
 CREATE TRIGGER TablePost_AfterInsert_TRG 
   ON post
 AFTER INSERT
 AS
+  declare @idPostParent int = NULL;
+  set @idPostParent = (select postParent from Inserted)
+  if (@idPostParent IS NULL)
+  begin
   UPDATE post
   SET postParent = i.postID
   FROM Inserted AS i
-  WHERE post.postID = i.postID;
+  WHERE post.postID = i.postID
+  end;
