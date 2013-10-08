@@ -421,14 +421,14 @@ AS
 							('thanhshark', 'Indoor Jobs', 'Working indoor', 0)
 
 go
-insert into [worker] values('f1sudoku', 'Unskilled worker', 'Waiter', 15000, 120000, 0),
-						   ('chieclacuoicung', 'Bachelor of Engineering', 'Mechanic', 25000, 200000, 0),
-						   ('yeunuocaihonta', 'Unskilled worker', 'Driver', 20000, 160000, 0),
-						   ('ronalut', 'Unskilled worker', 'Painter', 20000, 160000, 0),
-						   ('lienhoa', 'Unskilled worker', 'Waitress', 15000, 120000, 0),
-						   ('thuykieu', 'Unskilled worker', 'Babysister', 20000, 160000, 0),
-						   ('chantinh', 'Unskilled worker', 'Gardener', 15000, 120000, 0),
-						   ('lamminh', 'Unskilled worker', 'Janitor', 20000, 160000, 0)
+insert into [worker] values('f1sudoku', 'Semi-skilled', 'Waiter', 15000, 120000, 0),
+						   ('chieclacuoicung', 'Aware-skilled', 'Mechanic', 25000, 200000, 0),
+						   ('yeunuocaihonta', 'Aware-skilled', 'Driver', 20000, 160000, 0),
+						   ('ronalut', 'Aware-skilledr', 'Painter', 20000, 160000, 0),
+						   ('lienhoa', 'Semi-skilled', 'Waitress', 15000, 120000, 0),
+						   ('thuykieu', 'Semi-skilled', 'Babysister', 20000, 160000, 0),
+						   ('chantinh', 'Semi-skilled', 'Gardener', 15000, 120000, 0),
+						   ('lamminh', 'Semi-skilled', 'Janitor', 20000, 160000, 0)
 go
 insert into [groupDetails] values(1, 6, 0),
 								 (2, 7, 0),
@@ -438,16 +438,16 @@ insert into [groupDetails] values(1, 6, 0),
 								 (3, 5, 0),
 								 (3, 2, 0)
 go
-insert into [work] values('thanhshark', 'Waiter', '30 To Hien Thanh Street, Ward 14, District 10', 'Ho Chi Minh', 'Vietnam', '10/07/2013', '10/07/2014', '08:00', '16:00', 'openning', 'Go to work on time everyday', 'Order food or drink for customer', 15000, 120000, 0),	
-				         ('kenshincho', 'Mechanic', '367 Bac Hai Street, Ward 6, Tan Binh District', 'Ho Chi Minh', 'Vietnam', '10/07/2013', '10/07/2015', '09:00', '17:00', 'openning', 'Go to work on time, hard working, easy going', 'fixing the card', 25000, 200000, 0),
-						 ('trongnhan', 'Waitress', '75 Hai Ba Trung Street, Ward 7, Dong Da District', 'Ha Noi', 'Vietnam','10/07/2013', '10/07/2014', '14:00', '22:00', 'openning', 'Go to work on time', 'Order food or drink for customer', 15000, 120000, 0),
-						 ('choemmotconduong', 'Driver', '50 Ba Thang Hai, An Khanh Ward, Ninh Kieu District','Can Tho' ,'Vietnam', '10/07/2013', '10/07/2013', '16:00', '00:00', 'openning', 'Go to work on time, no drink alcohol when driving', 'Drive a bus', 20000, 160000, 0)
+insert into [work] values('thanhshark', 'Finding A Waiter For Our Restaurant','Waiter', '30 To Hien Thanh Street, Ward 14, District 10', 'Ho Chi Minh', 'Vietnam', '09/07/2013', '10/07/2013', '09/10/2013', '10/10/2013', 'openning', 'Go to work on time everyday', 'Order food or drink for customer', 15000, 120000, 0),	
+				         ('kenshincho', 'Finding Person To Fixing The Car', 'Mechanic', '367 Bac Hai Street, Ward 6, Tan Binh District', 'Ho Chi Minh', 'Vietnam', '10/07/2013', '11/07/2013', '10/07/2013', '10/07/2015', 'openning', 'Go to work on time, hard working, easy going', 'fixing the card', 25000, 200000, 0),
+						 ('trongnhan', 'Finding A Waiter For Our Restaurant', 'Waitress', '75 Hai Ba Trung Street, Ward 7, Dong Da District', 'Ha Noi', 'Vietnam','10/07/2013', '11/07/2013', '10/07/2013', '10/07/2014', 'openning', 'Go to work on time', 'Order food or drink for customer', 15000, 120000, 0),
+						 ('choemmotconduong', 'Finding A Driver', 'Driver', '50 Ba Thang Hai, An Khanh Ward, Ninh Kieu District','Can Tho' ,'Vietnam', '10/07/2013', '11/07/2013', '10/07/2013', '10/07/2013', 'openning', 'Go to work on time, no drink alcohol when driving', 'Drive a bus', 20000, 160000, 0)
 					
    go
-   insert into [workDaily] values(1, 1, '10/07/2013', '10/07/2014', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', 0),
-								 (2, 2, '10/07/2013', '10/07/2014', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', 0),
-								 (3, 5, '10/07/2013', '10/07/2014', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', 0),
-								 (4, 3, '10/07/2013', '10/07/2014', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', 0)
+   insert into [workDaily] values(1, 1, '10/07/2013', '10/07/2014', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', '8H-16H', 1, 0),
+								 (2, 2, '10/07/2013', '10/07/2014', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', '9H-17H', 1, 0),
+								 (3, 5, '10/07/2013', '10/07/2014', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', '14H-22H', 1, 0),
+								 (4, 3, '10/07/2013', '10/07/2014', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', '16H:00H', 1, 0)
    go 
    insert into [mediaWork] values (1, 'waiter.jpg', 0),
 								  (1, 'mechanic.jpg', 0),
