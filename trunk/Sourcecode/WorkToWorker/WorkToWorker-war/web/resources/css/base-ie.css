@@ -1,0 +1,9 @@
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .tp-bannershadow.tp-shadow2 { background: url(../resources/rs-plugin/assets/shadow2_750.png) no-repeat; }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .tp-bannershadow.tp-shadow2 { background: url(../resources/rs-plugin/assets/shadow2_470.png) no-repeat; }
+}
+@media only screen and (min-width: 0px) and (max-width: 480px) {
+    .tp-bannershadow.tp-shadow2 { background: url(../resources/rs-plugin/assets/shadow2_310.png) no-repeat; }
+}

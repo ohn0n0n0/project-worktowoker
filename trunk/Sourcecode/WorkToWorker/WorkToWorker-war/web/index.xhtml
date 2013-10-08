@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>PrimeFaces</title>
+            <ui:include src="/templates/head.xhtml"/>
+        </h:head>
+        <h:body>
+            <ui:include src="/templates/header.xhtml"/>
+            <ui:include src="/templates/sliderhome.xhtml"/>
+            <div class="container">
+                <div class="row jumbotron text-center shadow">
+                    <h1>Welcome to Work to Worker!</h1>
+                    <h2>Ready to launch?$</h2>
+                    <div class="btn-group">
+                        <a class="btn btn-lg btn-warning" href="#">Work</a>
+                        <a class="btn btn-lg btn-success" href="#">Hire</a>
+                    </div>
+                </div>
+                <div class="row shadow block-wrapper margin-block">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#">New Workers</a></li>
+                        <li><a href="#">Worker Hight Rating</a></li>
+                    </ul>
+                    <div class="col-xs-12 col-sm-6 col-md-3 .col-lg-3">
+                        <div class="figure text-center">
+                            <h:graphicImage library="images" name="lee-byung-hun-364-360.jpg" class="img-circle img-thumbnail" width="140px" height="140px"/>
+                            <div class="figcaption">
+                                <h4>Lee Byung Hun</h4>
+                                <span class="author">Developer</span>
+                                <span>$200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ui:include src="/templates/footer.xhtml"/>
+        </h:body>
+    </f:view>
+</html>
