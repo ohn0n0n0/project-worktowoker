@@ -193,6 +193,7 @@ CREATE TABLE [post]
 	postDateCreate	datetime,
 	postDateEdit	datetime,
 	[status]		bit,
+	privateKey		nvarchar(50),
 	isDelete		bit default (0)
 )
 GO
