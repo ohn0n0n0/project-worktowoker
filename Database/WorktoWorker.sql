@@ -96,14 +96,15 @@ CREATE TABLE [work]
 (
 	workID			int IDENTITY(1,1) PRIMARY KEY,
 	username		nvarchar(30),
+	workTitle		nvarchar(250),
 	skillName		nvarchar(50),
 	workAddress		nvarchar(max),
 	workCity		nvarchar(250),
 	workCountry		nvarchar(250),
-	startDate		datetime,
-	endDate			datetime,
-	startTime		time,
-	endTime			time,
+	startPost		datetime,
+	endPost			datetime,
+	startWork		datetime,
+	endWork			datetime,
 	[status]		nvarchar(30),
 	feedback		nvarchar(4000),
 	workDetails		nvarchar(4000),
@@ -169,6 +170,7 @@ create table [workDaily]
 	Friday varchar(10),
 	Saturday varchar(10),
 	Sunday varchar(10),
+	[status] bit,
 	isDelete		bit default (0)
 CONSTRAINT PK_workDaily PRIMARY KEY (workId,workerId)
 )
