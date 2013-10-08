@@ -1,0 +1,26 @@
+/* Base css */
+.shadow { box-shadow: 0px 3px 15px -5px #000; -moz-box-shadow: 0px 3px 15px -5px #000; -webkit-box-shadow: 0px 3px 15px -5px #000; }
+.block-wrapper { border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+/* Base css end */
+/* Hearder */
+#header { height:80px; background: #604a7b; border-bottom:5px solid #fff; margin-bottom: 30px; }
+#header .logo { height:75px; }
+#header .nav-header { height:75px; line-height:75px; }
+/* Hearder end */
+/* Slide banner */
+.bannercontainer { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; margin: 50px auto; padding: 5px; background-color: #fff; width: 890px; position: relative; margin-left: auto; margin-right: auto; }
+.banner { width: 890px; height: 490px; position: relative; overflow: hidden; }
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    .banner, .bannercontainer { width:750px; height:412px;}
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .banner, .bannercontainer { width:470px; height:258px; }
+}
+@media only screen and (min-width: 0px) and (max-width: 480px) {
+    .banner, .bannercontainer { width:310px;height:170px; }
+}
+.tp-rightarrow.large { position: absolute; bottom: 50%; right: 0px; margin-right: 20px; }
+.tp-leftarrow.large { position: absolute; bottom: 50%; left: 0px; margin-left: 20px; }
+.tp-bullets { position: absolute; right: 10px; bottom: 10px; }
+/* Slide banner end */
+#footer { height:80px; background: #604a7b; border-top:5px solid #fff; margin-top: 30px; }

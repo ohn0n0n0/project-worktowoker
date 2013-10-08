@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+                <ui:include src="../templates/head.xhtml"/>
+        </h:head>
+        <h:body>
+            <ui:include src="../templates/header.xhtml"/>
+            <div class="container">
+                <ui:include src="../templates/navigation.xhtml"/>
+                <ui:include src="../templates/breadcrumbs.xhtml"/>
+            </div>
+            <ui:include src="../templates/footer.xhtml"/>
+        </h:body>
+    </f:view>
+</html>
