@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Stateless
 public class MediaWorkFacade extends AbstractFacade<MediaWork> implements MediaWorkFacadeLocal {

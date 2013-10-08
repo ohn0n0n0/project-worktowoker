@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "work", catalog = "WorkToWorker", schema = "dbo")
@@ -40,9 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Work.findByWorkID", query = "SELECT w FROM Work w WHERE w.workID = :workID"),
     @NamedQuery(name = "Work.findBySkillName", query = "SELECT w FROM Work w WHERE w.skillName = :skillName"),
     @NamedQuery(name = "Work.findByWorkAddress", query = "SELECT w FROM Work w WHERE w.workAddress = :workAddress"),
-    @NamedQuery(name = "Work.findByWorkCountry", query = "SELECT w FROM Work w WHERE w.workCountry = :workCountry"),
     @NamedQuery(name = "Work.findByWorkCity", query = "SELECT w FROM Work w WHERE w.workCity = :workCity"),
-    @NamedQuery(name = "Work.findByWorkLoc", query = "SELECT w FROM Work w WHERE w.workLoc = :workLoc"),
+    @NamedQuery(name = "Work.findByWorkCountry", query = "SELECT w FROM Work w WHERE w.workCountry = :workCountry"),
     @NamedQuery(name = "Work.findByStartDate", query = "SELECT w FROM Work w WHERE w.startDate = :startDate"),
     @NamedQuery(name = "Work.findByEndDate", query = "SELECT w FROM Work w WHERE w.endDate = :endDate"),
     @NamedQuery(name = "Work.findByStartTime", query = "SELECT w FROM Work w WHERE w.startTime = :startTime"),
@@ -68,14 +67,11 @@ public class Work implements Serializable {
     @Column(name = "workAddress", length = 2147483647)
     private String workAddress;
     @Size(max = 250)
-    @Column(name = "workCountry", length = 250)
-    private String workCountry;
-    @Size(max = 250)
     @Column(name = "workCity", length = 250)
     private String workCity;
     @Size(max = 250)
-    @Column(name = "workLoc", length = 250)
-    private String workLoc;
+    @Column(name = "workCountry", length = 250)
+    private String workCountry;
     @Column(name = "startDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
@@ -88,13 +84,14 @@ public class Work implements Serializable {
     @Column(name = "endTime")
     @Temporal(TemporalType.TIME)
     private Date endTime;
-    @Column(name = "status")
-    private Integer status;
+    @Size(max = 30)
+    @Column(name = "status", length = 30)
+    private String status;
     @Size(max = 4000)
     @Column(name = "feedback", length = 4000)
     private String feedback;
-    @Size(max = 50)
-    @Column(name = "workDetails", length = 50)
+    @Size(max = 4000)
+    @Column(name = "workDetails", length = 4000)
     private String workDetails;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "chargesHrs", precision = 19, scale = 4)
@@ -142,14 +139,6 @@ public class Work implements Serializable {
         this.workAddress = workAddress;
     }
 
-    public String getWorkCountry() {
-        return workCountry;
-    }
-
-    public void setWorkCountry(String workCountry) {
-        this.workCountry = workCountry;
-    }
-
     public String getWorkCity() {
         return workCity;
     }
@@ -158,12 +147,12 @@ public class Work implements Serializable {
         this.workCity = workCity;
     }
 
-    public String getWorkLoc() {
-        return workLoc;
+    public String getWorkCountry() {
+        return workCountry;
     }
 
-    public void setWorkLoc(String workLoc) {
-        this.workLoc = workLoc;
+    public void setWorkCountry(String workCountry) {
+        this.workCountry = workCountry;
     }
 
     public Date getStartDate() {
@@ -198,11 +187,11 @@ public class Work implements Serializable {
         this.endTime = endTime;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

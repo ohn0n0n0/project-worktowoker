@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "attach", catalog = "WorkToWorker", schema = "dbo")

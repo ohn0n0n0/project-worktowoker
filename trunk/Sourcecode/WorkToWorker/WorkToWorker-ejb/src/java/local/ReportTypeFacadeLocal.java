@@ -10,7 +10,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Local
 public interface ReportTypeFacadeLocal {

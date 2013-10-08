@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "login", catalog = "WorkToWorker", schema = "dbo")
@@ -34,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Login.findByPassword", query = "SELECT l FROM Login l WHERE l.password = :password"),
     @NamedQuery(name = "Login.findByEmail", query = "SELECT l FROM Login l WHERE l.email = :email"),
     @NamedQuery(name = "Login.findByPermission", query = "SELECT l FROM Login l WHERE l.permission = :permission"),
+    @NamedQuery(name = "Login.findByCreateDate", query = "SELECT l FROM Login l WHERE l.createDate = :createDate"),
     @NamedQuery(name = "Login.findByIsDelete", query = "SELECT l FROM Login l WHERE l.isDelete = :isDelete")})
 public class Login implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -53,6 +57,9 @@ public class Login implements Serializable {
     @Size(max = 50)
     @Column(name = "permission", length = 50)
     private String permission;
+    @Column(name = "createDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
     @Column(name = "isDelete")
     private Boolean isDelete;
     @OneToMany(mappedBy = "username")
@@ -103,6 +110,14 @@ public class Login implements Serializable {
 
     public void setPermission(String permission) {
         this.permission = permission;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Boolean getIsDelete() {

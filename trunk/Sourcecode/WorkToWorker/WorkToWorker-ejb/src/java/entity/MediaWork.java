@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "mediaWork", catalog = "WorkToWorker", schema = "dbo")

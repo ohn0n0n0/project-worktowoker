@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "groupDetails", catalog = "WorkToWorker", schema = "dbo")

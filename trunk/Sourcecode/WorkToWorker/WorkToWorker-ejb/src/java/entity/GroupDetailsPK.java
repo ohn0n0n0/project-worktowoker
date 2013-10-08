@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Embeddable
 public class GroupDetailsPK implements Serializable {
