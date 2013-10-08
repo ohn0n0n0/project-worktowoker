@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "information", catalog = "WorkToWorker", schema = "dbo")
@@ -36,9 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Information.findByGender", query = "SELECT i FROM Information i WHERE i.gender = :gender"),
     @NamedQuery(name = "Information.findByDob", query = "SELECT i FROM Information i WHERE i.dob = :dob"),
     @NamedQuery(name = "Information.findByAddress", query = "SELECT i FROM Information i WHERE i.address = :address"),
-    @NamedQuery(name = "Information.findByCountry", query = "SELECT i FROM Information i WHERE i.country = :country"),
     @NamedQuery(name = "Information.findByCity", query = "SELECT i FROM Information i WHERE i.city = :city"),
-    @NamedQuery(name = "Information.findByLocal", query = "SELECT i FROM Information i WHERE i.local = :local"),
+    @NamedQuery(name = "Information.findByCountry", query = "SELECT i FROM Information i WHERE i.country = :country"),
     @NamedQuery(name = "Information.findByPhone", query = "SELECT i FROM Information i WHERE i.phone = :phone"),
     @NamedQuery(name = "Information.findByProofID", query = "SELECT i FROM Information i WHERE i.proofID = :proofID"),
     @NamedQuery(name = "Information.findBySecurityQuestion", query = "SELECT i FROM Information i WHERE i.securityQuestion = :securityQuestion"),
@@ -68,14 +67,11 @@ public class Information implements Serializable {
     @Column(name = "address", length = 2147483647)
     private String address;
     @Size(max = 100)
-    @Column(name = "country", length = 100)
-    private String country;
-    @Size(max = 100)
     @Column(name = "city", length = 100)
     private String city;
     @Size(max = 100)
-    @Column(name = "local", length = 100)
-    private String local;
+    @Column(name = "country", length = 100)
+    private String country;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 20)
     @Column(name = "phone", length = 20)
@@ -153,14 +149,6 @@ public class Information implements Serializable {
         this.address = address;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getCity() {
         return city;
     }
@@ -169,12 +157,12 @@ public class Information implements Serializable {
         this.city = city;
     }
 
-    public String getLocal() {
-        return local;
+    public String getCountry() {
+        return country;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getPhone() {

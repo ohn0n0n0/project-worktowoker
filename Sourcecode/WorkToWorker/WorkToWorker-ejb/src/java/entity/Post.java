@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Thanh-Shark
+ * @author Son
  */
 @Entity
 @Table(name = "post", catalog = "WorkToWorker", schema = "dbo")
@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Post.findByPostDateCreate", query = "SELECT p FROM Post p WHERE p.postDateCreate = :postDateCreate"),
     @NamedQuery(name = "Post.findByPostDateEdit", query = "SELECT p FROM Post p WHERE p.postDateEdit = :postDateEdit"),
     @NamedQuery(name = "Post.findByStatus", query = "SELECT p FROM Post p WHERE p.status = :status"),
+    @NamedQuery(name = "Post.findByPrivateKey", query = "SELECT p FROM Post p WHERE p.privateKey = :privateKey"),
     @NamedQuery(name = "Post.findByIsDelete", query = "SELECT p FROM Post p WHERE p.isDelete = :isDelete")})
 public class Post implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -65,6 +66,9 @@ public class Post implements Serializable {
     private Date postDateEdit;
     @Column(name = "status")
     private Boolean status;
+    @Size(max = 50)
+    @Column(name = "privateKey", length = 50)
+    private String privateKey;
     @Column(name = "isDelete")
     private Boolean isDelete;
     @JoinColumn(name = "topicID", referencedColumnName = "topicID")
@@ -132,6 +136,14 @@ public class Post implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
 
     public Boolean getIsDelete() {
